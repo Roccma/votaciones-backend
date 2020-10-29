@@ -23,13 +23,10 @@ class Entidades extends Rest_Controller {
 
 		$response = array( "entidad" => $entidad );
 
-		if( empty( $entidad ) ){
+		if( empty( $entidad ) )
 			$response['entidad'] = null;
-			$this->response( $response, Rest_Controller::HTTP_NOT_FOUND );
-		}
-		else{
-			$this->response( $response );
-		}
+
+		$this->response( $response );
 
 		//echo json_encode( $response, JSON_UNESCAPED_UNICODE );
 	}
