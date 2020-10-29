@@ -23,12 +23,10 @@ class Usuarios extends Rest_Controller {
 
 		$response = array( "usuario" => $usuario );
 
-		if( empty( $usuario ) ){
+		if( empty( $usuario ) )
 			$response['usuario'] = null;
-			$this->response( $response, Rest_Controller::HTTP_NOT_FOUND );
-		}
-		else{
-			$this->response( $response );
-		}
+		
+		$this->response( $response );
+		
 	}
 }

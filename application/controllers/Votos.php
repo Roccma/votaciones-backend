@@ -23,13 +23,10 @@ class Votos extends Rest_Controller {
 
 		$response = array( "voto" => $voto );
 
-		if( empty( $voto ) ){
+		if( empty( $voto ) )
 			$response['voto'] = null;
-			$this->response( $response, Rest_Controller::HTTP_NOT_FOUND );
-		}
-		else{
-			$this->response( $response );
-		}
+		
+		$this->response( $response );
 	}
 
 	public function votar_post(){

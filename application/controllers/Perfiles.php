@@ -21,12 +21,9 @@ class Perfiles extends Rest_Controller {
 
 		$response = array();
 
-		foreach ($postulantes->result() as $postulante) {
-			$response[] = array(
-				"id" => $postulante->id,
-				"nombre" => $postulante->nombre,
-				"apellido" => $postulante->apellido
-			);
+		foreach ($postulantes->result('array') as $postulante) {
+			unset($postulante['id_perfil']);
+			$response[] = $postulante;
 		}
 
 		$this->response( array( "postulantes" => $response ) );
