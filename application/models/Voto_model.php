@@ -35,7 +35,7 @@ class Voto_model extends CI_Model {
 		if( $this->db->insert( 'voto', $this ) ){
 			return array(
 				"code" => Rest_Controller::HTTP_OK,
-				"response" => array( "id" => $this->db->insert_id() );
+				"response" => array( "id" => $this->db->insert_id() )
 			);
 		}
 		else{
@@ -43,7 +43,7 @@ class Voto_model extends CI_Model {
 			return array(
 				"code" => Rest_Controller::HTTP_INTERNAL_SERVER_ERROR,
 				"response" => array( "error" => $this->db->_error_message(),
-									"error_number" => $this->db->_error_number() );
+									"error_number" => $this->db->_error_number() )
 			);
 		}
 	}
