@@ -27,7 +27,15 @@ class Entidades extends Rest_Controller {
 			$response['entidad'] = null;
 
 		$this->response( $response );
+	}
 
-		//echo json_encode( $response, JSON_UNESCAPED_UNICODE );
+	public function ranking_get() {
+		$ranking = $this->Entidad_model->get_ranking();
+		$postulantes = array();
+		foreach ($ranking->result() as $postulante) {
+			$postulantes[] = $postulante;
+		}
+
+		$this->response( array( "postulantes" => $postulantes ) );
 	}
 }

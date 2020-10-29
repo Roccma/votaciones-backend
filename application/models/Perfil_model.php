@@ -18,6 +18,7 @@ class Perfil_model extends CI_Model {
 
 		$this->db->join('entidad', 'perfil.id = entidad.id_perfil');
 		$this->db->where('entidad.es_postulante', true);
+		$this->db->order_by('perfil.nombre', 'ASC');
 		$query = $this->db->get( 'perfil' );
 
 		return $query;
