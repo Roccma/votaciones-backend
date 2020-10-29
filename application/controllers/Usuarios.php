@@ -17,7 +17,7 @@ class Usuarios extends Rest_Controller {
 
 	public function login_post() {
 
-		$data = $this->post();
+		$data = (array) json_decode( $this->post()[0] );
 
 		$usuario = $this->Usuario_model->do_login( $data['email'], $data['clave'] );
 

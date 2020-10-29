@@ -33,6 +33,8 @@ class Votos extends Rest_Controller {
 
 		$data = $this->post();
 
+		$data = (array) json_decode( $data[0] );
+
 		$this->load->model('Entidad_model');
 
 		$entidad = $this->Entidad_model->get_entidad( $data['documento_votante'] );

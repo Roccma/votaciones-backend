@@ -17,6 +17,7 @@ class Usuario_model extends CI_Model {
 
 	public function do_login( $email, $clave ){
 
+		$this->db->select('perfil.*, usuario.documento, usuario.email');
 		$this->db->join('perfil', 'usuario.id_perfil = perfil.id');
 		$this->db->where('usuario.email', $email);
 		$this->db->where('usuario.clave', $clave);
