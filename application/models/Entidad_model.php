@@ -9,8 +9,6 @@ class Entidad_model extends CI_Model {
 	public $es_postulante;
 	public $id_perfil;
 
-	private $table = "entidad";
-
 	public function get_entidad( $documento ){
 		
 		$this->db->where('documento', $documento);

@@ -33,8 +33,14 @@ class Votos extends Rest_Controller {
 
 		$data = $this->post();
 
+		$this->load->model('Entidad_model');
+
+		$entidad = $this->Entidad_model->get_entidad( $data['documento_votante'] );
+
+		$data['id_entidad_votante'] = $entidad->id;
+
 		$this->Voto_model->set_data( $data );
-		$this->Voto_model->votar();
+		$this->response( $this->Voto_model->votar() );
 
 	}
 }
