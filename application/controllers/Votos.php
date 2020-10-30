@@ -31,9 +31,7 @@ class Votos extends Rest_Controller {
 
 	public function votar_post(){
 
-		$data = $this->post();
-
-		$data = (array) json_decode( $data[0] );
+		$data = count( $this->post() ) == 1 ? (array) json_decode( $this->post()[0] ) : $this->post();
 
 		$this->load->model('Entidad_model');
 

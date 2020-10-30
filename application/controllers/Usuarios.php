@@ -9,7 +9,8 @@ class Usuarios extends Rest_Controller {
 		parent::__construct();
 
 		header('Access-Control-Allow-Origin: *');
-    	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
 		$this->load->database();
 		$this->load->model('Usuario_model');
@@ -17,7 +18,7 @@ class Usuarios extends Rest_Controller {
 
 	public function login_post() {
 
-		$data = (array) json_decode( $this->post()[0] );
+		$data = count( $this->post() ) == 1 ? (array) json_decode( $this->post()[0] ) : $this->post();
 
 		$usuario = $this->Usuario_model->do_login( $data['email'], $data['clave'] );
 
@@ -27,6 +28,13 @@ class Usuarios extends Rest_Controller {
 			$response['usuario'] = null;
 		
 		$this->response( $response );
-		
+	}
+
+	public function clave_put(){
+
+		$data = count( $this->put() ) == 1 ? (array) json_decode( $this->put()[0] ) : $this->put();
+
+		$this->response( $this->Usuario_model->change_password( $data['id'], $data['clave'] ) );
+
 	}
 }
