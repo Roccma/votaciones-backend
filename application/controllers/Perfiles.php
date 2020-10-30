@@ -9,7 +9,14 @@ class Perfiles extends Rest_Controller {
 		parent::__construct();
 
 		header('Access-Control-Allow-Origin: *');
-    	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
+		if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+			header("HTTP/1.1 200 ");
+			exit;
+		}
+
 
 		$this->load->database();
 		$this->load->model('Perfil_model');
@@ -27,5 +34,14 @@ class Perfiles extends Rest_Controller {
 		}
 
 		$this->response( array( "postulantes" => $response ) );
+	}
+
+	public function nuevo_post(){
+
+		$data = count( $this->post() ) == 1 ? (array) json_decode( $this->post()[0] ) : $this->post();
+
+		$this->Perfil_model->set_data( $data );
+
+		$this->response( $this->Perfil_model->insert() );
 	}
 }

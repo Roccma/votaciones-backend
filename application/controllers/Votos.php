@@ -9,7 +9,14 @@ class Votos extends Rest_Controller {
 		parent::__construct();
 
 		header('Access-Control-Allow-Origin: *');
-    	header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+		header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+		header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
+		if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+			header("HTTP/1.1 200 ");
+			exit;
+		}
+
 
 		$this->load->database();
 		$this->load->model('Voto_model');
