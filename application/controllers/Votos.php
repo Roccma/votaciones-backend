@@ -45,4 +45,28 @@ class Votos extends Rest_Controller {
 		$this->response( $this->Voto_model->votar() );
 
 	}
+
+	public function listar_get(){
+
+		$votos = $this->Voto_model->get_votos();
+
+		$response = array();
+
+		foreach ($votos->result() as $voto) {
+			$response[] = $voto;
+		}
+
+		$this->response( array( "votos" => $response ) );
+
+	}
+
+	public function detalle_get(){
+
+		$id = $this->uri->segment(3);
+
+		$voto = $this->Voto_model->get_data_voto( $id );
+
+		$this->response( array( "voto" => $voto->result()[0] ) );
+
+	}
 }
